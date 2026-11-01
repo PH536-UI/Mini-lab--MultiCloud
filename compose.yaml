@@ -1,0 +1,60 @@
+# Mini Lab MultiCloud
+# Emuladores locais. Não use junto dos contêineres iniciados pelo comando floci.
+# Antes: floci stop; floci az stop; floci gcp stop; floci oci stop
+
+services:
+  floci-aws:
+    image: floci/floci:latest
+    container_name: floci-aws
+    ports:
+      - "4566:4566"
+    volumes:
+      - aws-data:/app/data
+    environment:
+      FLOCI_HOSTNAME: floci-aws
+      FLOCI_STORAGE_MODE: persistent
+      FLOCI_STORAGE_PERSISTENT_PATH: /app/data
+    restart: unless-stopped
+
+  floci-az:
+    image: floci/floci-az:latest
+    container_name: floci-az
+    ports:
+      - "4577:4577"
+    volumes:
+      - az-data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      FLOCI_AZ_HOSTNAME: floci-az
+    restart: unless-stopped
+
+  floci-gcp:
+    image: floci/floci-gcp:latest
+    container_name: floci-gcp
+    ports:
+      - "4588:4588"
+    volumes:
+      - gcp-data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      FLOCI_GCP_HOSTNAME: floci-gcp
+      FLOCI_GCP_STORAGE_MODE: hybrid
+    restart: unless-stopped
+
+  floci-oci:
+    image: floci/floci-oci:latest
+    container_name: floci-oci
+    ports:
+      - "4599:4599"
+    volumes:
+      - oci-data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      FLOCI_OCI_HOSTNAME: floci-oci
+    restart: unless-stopped
+
+volumes:
+  aws-data:
+  az-data:
+  gcp-data:
+  oci-data:

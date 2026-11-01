@@ -54,13 +54,39 @@ docker version
 docker run --rm hello-world
 ```
 
-## Iniciar o lab
+## Iniciar o lab pelo Floci CLI
 
 ```bash
 floci start
 floci az start
 floci gcp start
 floci oci start
+```
+
+## Alternativa reproduzível: Docker Compose
+
+O arquivo `compose.yaml` inicia os quatro emuladores com volumes persistentes. Use *uma forma de início por vez*. Se o Floci CLI já estiver com os contêineres ativos, pare-os antes para evitar conflito nas portas.
+
+```bash
+floci stop
+floci az stop
+floci gcp stop
+floci oci stop
+
+docker compose up -d
+docker compose ps
+```
+
+Para encerrar a stack criada pelo Compose, preservando os dados:
+
+```bash
+docker compose down
+```
+
+Para remover também os dados persistidos, ação destrutiva:
+
+```bash
+docker compose down -v
 ```
 
 ## Validar os ambientes
@@ -95,7 +121,7 @@ Atalhos básicos:
 - `Ctrl+B`, depois setas: trocar de painel
 - `Ctrl+B`, depois `d`: desconectar sem encerrar a sessão
 
-## Parar o lab
+## Parar o lab iniciado pelo Floci CLI
 
 ```bash
 floci stop
