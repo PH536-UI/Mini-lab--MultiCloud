@@ -6,6 +6,25 @@ Laboratório multicloud local para testar infraestrutura, automação e armazena
 
 Validar fluxos multicloud, recursos de storage, automação e integração entre ferramentas em um ambiente local, isolado e reproduzível. Este lab é voltado a estudo, desenvolvimento e experimentação.
 
+## Arquitetura local
+
+```text
+┌───────────────────────────────────────────────────────────────┐
+│ Windows                                                        │
+│  └── Docker Desktop                                            │
+│       └── WSL2 · Ubuntu                                        │
+│            └── tmux · sessão: trabalho                        │
+│                 ├── AWS Floci   → localhost:4566              │
+│                 ├── Azure Floci → localhost:4577              │
+│                 ├── GCP Floci   → localhost:4588              │
+│                 ├── OCI Floci   → localhost:4599              │
+│                 └── docker stats → CPU e memória ao vivo      │
+└───────────────────────────────────────────────────────────────┘
+
+Todos os emuladores executam em contêineres Docker locais.
+Não exigem conta cloud, cartão, cobrança ou credenciais reais.
+```
+
 ## Ambiente
 
 - Windows com WSL2 e Ubuntu
