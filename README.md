@@ -2,7 +2,7 @@
 
 Laboratório multicloud local para testar infraestrutura, automação e armazenamento em AWS, Azure, GCP e OCI, sem conta cloud, cobrança ou credenciais reais.
 
-> Para recrutadores: veja o [resumo de portfólio do Professor PH](PORTFOLIO.md), com arquitetura, resultados verificáveis, controles e pitch técnico em inglês.
+> Para recrutadores: veja o [resumo bilíngue de portfólio do Professor PH](PORTFOLIO.md), com arquitetura, resultados verificáveis, controles e pitch técnico em pt-BR e inglês.
 
 ## Objetivo
 
