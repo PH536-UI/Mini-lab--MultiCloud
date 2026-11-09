@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Só redireciona Object Storage ao floci-oci. Nenhum endpoint Oracle real é usado.
-printf "%s\n" "export TF_VAR_client_host_overrides='oci_objectstorage.ObjectStorageClient=http://localhost:4599'"
+# Direciona os clientes OCI usados pelo provider ao floci-oci local.
+printf "%s\n" "export TF_VAR_CLIENT_HOST_OVERRIDES=oci_identity.IdentityClient=http://localhost:4599;oci_object_storage.ObjectStorageClient=http://localhost:4599"
