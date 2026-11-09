@@ -4,6 +4,7 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
+bash scripts/verify-local-only.sh
 bash scripts/preflight.sh
 bash scripts/generate-oci-local-key.sh
 eval "$(bash scripts/prepare-azure-tls.sh)"

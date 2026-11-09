@@ -4,6 +4,8 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 evidence_dir="$root/evidence"
 timestamp="$(date +%Y%m%d-%H%M%S)"
+
+bash "$root/scripts/verify-local-only.sh"
 mkdir -p "$evidence_dir"
 
 {

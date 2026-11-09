@@ -4,6 +4,7 @@ terraform.tfstate
 terraform.tfstate.*
 .local/
 evidence/
+evidence-sanitized/
 *.pem
 *.crt
 *.log

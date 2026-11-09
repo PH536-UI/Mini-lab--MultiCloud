@@ -13,7 +13,8 @@ Demonstração técnica para onboarding de storage em AWS, Azure, Google Cloud e
 
 ## Limites de segurança
 
-- Não há `terraform apply` em nenhum script.
+- Não há `terraform apply` em nenhum script da esteira.
+- A esteira verifica endpoints `localhost`, bloqueia variáveis comuns de credenciais reais e falha se encontrar comandos Terraform mutáveis.
 - Os valores de identidade são sementes públicas do emulador, não credenciais de cloud.
 - A chave OCI é criada em `oci/.local/`, com permissão `600`, e fica ignorada pelo Git.
 - Cada cloud tem seu próprio diretório e state. Não compartilhe `.terraform` nem `terraform.tfstate`.
@@ -39,10 +40,10 @@ bash scripts/preflight.sh
 
 ```bash
 cd storage-lab
-bash scripts/plan-all.sh
+bash scripts/run-local-validation.sh
 ```
 
-O script prepara o certificado autoassinado Azure para o processo Terraform, gera uma chave OCI descartável e executa somente `init`, `validate` e `plan` em `aws`, `azure`, `gcp` e `oci`.
+A esteira valida que os endpoints são locais, prepara o certificado autoassinado Azure, gera uma chave OCI descartável e executa somente `init`, `validate` e `plan` em `aws`, `azure`, `gcp` e `oci`. Ao final, cria evidências sanitizadas e um relatório local. Veja `PIPELINE-LOCAL-FIRST.md` para os controles e critérios de aceite.
 
 ## Painel de observabilidade
 
@@ -58,12 +59,6 @@ São cinco painéis: endpoints AWS, Azure, GCP e OCI, mais `docker stats` dos qu
 
 > I designed a local-first, Terraform-based storage onboarding across AWS, Azure, Google Cloud, and OCI. Each cloud has isolated state, local endpoints, explicit security controls, and reproducible acceptance criteria. The Azure path handles TLS trust, GCP enforces uniform bucket-level access, OCI uses an ephemeral local API key, and the monitoring view confirms emulator health and container consumption. No cloud account or real resource is used in this demonstration.
 
-## Depois de uma execução local autorizada
+## Limite operacional
 
-Após um `apply` local executado conscientemente, destrua cada estado separadamente:
-
-```bash
-for cloud in aws azure gcp oci; do (cd "$cloud" && terraform destroy -input=false); done
-```
-
-Não use esse comando contra contas reais.
+Este repositório demonstra planejamento e validação local. `terraform apply` e `terraform destroy` não fazem parte da esteira nem dos critérios de aceite. Não execute comandos mutáveis contra contas reais.
