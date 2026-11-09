@@ -2,6 +2,8 @@
 
 Laboratório multicloud local para testar infraestrutura, automação e armazenamento em AWS, Azure, GCP e OCI, sem conta cloud, cobrança ou credenciais reais.
 
+> Para recrutadores: veja o [resumo de portfólio do Professor PH](PORTFOLIO.md), com arquitetura, resultados verificáveis, controles e pitch técnico em inglês.
+
 ## Objetivo
 
 Validar fluxos multicloud, recursos de storage, automação e integração entre ferramentas em um ambiente local, isolado e reproduzível. Este lab é voltado a estudo, desenvolvimento e experimentação.
