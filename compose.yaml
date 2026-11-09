@@ -26,6 +26,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       FLOCI_AZ_HOSTNAME: floci-az
+      FLOCI_AZ_TLS_ENABLED: "true"
     restart: unless-stopped
 
   floci-gcp:
