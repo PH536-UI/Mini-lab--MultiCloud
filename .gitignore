@@ -1,0 +1,18 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+terraform.tfstate.backup
+crash.log
+override.tf
+override.tf.json
+
+# Evidências brutas - só a sanitizada vai pro GitHub
+storage-lab/evidence/
+
+# Chaves locais
+*.pem
+*.key
+*.p12
+.env
